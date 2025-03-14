@@ -14,6 +14,17 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
+      - name: Install dependencies  # Cài đặt unzip & Node.js
+        run: |
+          sudo apt-get update 
+          sudo apt-get install -y unzip nodejs
+
+      - name: Install AWS CLI  # Thêm bước cài đặt AWS CLI
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y awscli
+          aws --version  # Kiểm tra phiên bản AWS CLI
+
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
@@ -30,6 +41,8 @@ jobs:
 
       - name: Initialize Terraform
         run: terraform init
+        working-directory: ./CICD-modules/environments/dev
 
       - name: Terraform Plan
         run: terraform plan -var-file=terraform.tfvars -out=tfplan
+        working-directory: ./CICD-modules/environments/dev
