@@ -9,7 +9,7 @@ resource "aws_vpc" "main" {
   enable_dns_hostnames = true
 
   tags = {
-    Name = "Luan-vpc"
+    Name = "Luan-vpc-test"
   }
 }
 
@@ -44,7 +44,7 @@ resource "aws_internet_gateway" "igw" {
   vpc_id = aws_vpc.main.id
 
   tags = {
-    Name = "main-igw"
+    Name = "Luan-main-igw"
   }
 }
 
