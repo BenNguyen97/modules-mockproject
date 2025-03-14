@@ -1,0 +1,26 @@
+# Terraform local files
+*.tfstate
+*.tfstate.backup
+.terraform/
+.terraform.lock.hcl
+.tfvars
+# Thông tin nhạy cảm (nếu có)
+*.pem
+*.key
+*.env
+
+# Thông tin nhật ký và tệp tạm thời
+*.log
+*.bak
+*.tmp
+
+# Thông tin IDE (Visual Studio Code, IntelliJ, ...)
+.vscode/
+.idea/
+
+# Các tệp cấu hình hệ thống
+*.DS_Store
+
+#jenkins file
+Jenkinsfile
+Jenkinsfile-destroy

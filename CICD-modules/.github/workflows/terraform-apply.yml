@@ -1,0 +1,24 @@
+name: Terraform Apply
+
+on:
+  push:
+    branches:
+      - main  # Chạy khi có push vào main (sau khi merge PR)
+
+jobs:
+  terraform-apply:
+    name: Terraform Apply
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v2
+
+      - name: Initialize Terraform
+        run: terraform init
+
+      - name: Terraform Apply
+        run: terraform apply -auto-approve

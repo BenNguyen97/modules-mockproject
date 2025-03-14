@@ -1,0 +1,31 @@
+name: Terraform Destroy
+
+on:
+  workflow_dispatch:
+    inputs:
+      action:
+        description: "Choose action"
+        required: true
+        default: "destroy"
+        type: choice
+        options:
+          - destroy
+
+jobs:
+  terraform-destroy:
+    name: Terraform Destroy
+    runs-on: ubuntu-latest
+    if: github.event.inputs.action == 'destroy'
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v2
+
+      - name: Initialize Terraform
+        run: terraform init
+
+      - name: Terraform Destroy
+        run: terraform destroy -auto-approve
