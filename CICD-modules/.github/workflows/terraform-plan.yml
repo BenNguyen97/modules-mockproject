@@ -8,7 +8,7 @@ on:
 jobs:
   terraform-plan:
     name: Terraform Plan
-    runs-on: ubuntu-latest
+    runs-on: mock-project #ubuntu-latest #GitHub hosted - Sharing between
 
     steps:
       - name: Checkout repository
