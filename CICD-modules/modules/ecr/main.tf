@@ -8,5 +8,5 @@ resource "aws_ecr_repository" "aws_ecr" {
     image_scanning_configuration {
         scan_on_push = true
     }
-    tags                    = { Name = "luan's ECR" }
+    tags                    = { Name = "luan's ecr" }
 }
