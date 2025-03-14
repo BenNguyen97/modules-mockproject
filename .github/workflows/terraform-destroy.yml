@@ -21,7 +21,10 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Install AWS CLI  #Thêm bước cài đặt AWS CLI
+      - name: Install dependencies  # Cài đặt unzip
+        run: sudo apt-get update && sudo apt-get install -y unzip
+
+      - name: Install AWS CLI  # Thêm bước cài đặt AWS CLI
         run: |
           sudo apt-get update
           sudo apt-get install -y awscli
