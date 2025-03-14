@@ -61,8 +61,8 @@ resource "aws_iam_policy" "s3_read_policy" {
     Statement = [
       {
         Effect    = "Allow"
-        Action    = "s3:GetObject"
-        Resource  = "arn:aws:s3:::luan-mock-project/terraform.tfvars"
+        Action    = [ "s3:GetObject", "s3:ListBucket" ]
+        Resource  = [ "arn:aws:s3:::luan-mock-project", "arn:aws:s3:::luan-mock-project/*" ]
       }
     ]
   })
