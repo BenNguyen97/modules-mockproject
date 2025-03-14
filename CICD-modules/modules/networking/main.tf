@@ -9,7 +9,7 @@ resource "aws_vpc" "main" {
   enable_dns_hostnames = true
 
   tags = {
-    Name = "main-vpc"
+    Name = "Luan-vpc"
   }
 }
 
@@ -132,12 +132,14 @@ resource "aws_default_security_group" "vpc_sg" {
     to_port   = 22
     cidr_blocks = [local.my_ip]
   }
+
   egress {
     from_port   = 0
     to_port     = 0
     protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
   }
+
   tags = {
     Name = "VPC SG"
   }
