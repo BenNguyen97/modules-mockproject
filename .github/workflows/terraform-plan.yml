@@ -41,6 +41,8 @@ jobs:
 
       - name: Initialize Terraform
         run: terraform init
+        working-directory: ./CICD-modules/environments/dev
 
       - name: Terraform Plan
         run: terraform plan -var-file=terraform.tfvars -out=tfplan
+        working-directory: ./CICD-modules/environments/dev

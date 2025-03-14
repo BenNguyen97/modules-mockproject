@@ -41,6 +41,8 @@ jobs:
 
       - name: Initialize Terraform
         run: terraform init
+        working-directory: ./CICD-modules/environments/dev
 
       - name: Terraform Apply
         run: terraform apply -auto-approve -var-file=terraform.tfvars
+        working-directory: ./CICD-modules/environments/dev
