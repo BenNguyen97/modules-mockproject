@@ -64,7 +64,7 @@ variable "max_size" {
 
 # Biến cho tags (các thẻ) của tài nguyên
 variable "tags" {
-  description = "Các thẻ (tags) cho tài nguyên"
+  description = "tags cho tài nguyên"
   type        = map(string)
 }
 variable "eks_worker_node_role" {

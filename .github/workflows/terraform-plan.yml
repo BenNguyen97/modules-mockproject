@@ -34,7 +34,7 @@ jobs:
 
       - name: Download terraform.tfvars from S3
         run: |
-          aws s3 cp s3://luan-mock-project/terraform.tfvars terraform.tfvars
+          aws s3 cp s3://luan-mock-project/dev/terraform.tfvars terraform.tfvars
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v2
