@@ -112,7 +112,6 @@ resource "aws_route_table_association" "private" {
 }
 
 #Create Sercurity group
-provider "http" {}
 
 data "http" "my_ip" {
   url = "http://checkip.amazonaws.com/"
