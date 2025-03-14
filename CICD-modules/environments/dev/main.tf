@@ -35,6 +35,6 @@ module "eks" {
 }
 module "ecr" {
   source = "../../modules/ecr"
-  repository_name  = var.repository_name
+  repository_name  = "luan-ecr"
   tags             = var.tags
 }
