@@ -54,7 +54,7 @@ resource "aws_iam_role_policy_attachment" "ec2_registry_policy" {
 
 # Thêm quyền truy cập S3 cho EKS Cluster & Worker Node
 resource "aws_iam_policy" "s3_read_policy" {
-  name        = "EKS_S3_Read_Policy"
+  name        = "EKS_S3_Read_Policy_v2"
   description = "Cho phép EKS đọc file từ S3"
   policy      = jsonencode({
     Version   = "2012-10-17"
