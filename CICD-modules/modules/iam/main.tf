@@ -51,3 +51,31 @@ resource "aws_iam_role_policy_attachment" "ec2_registry_policy" {
   role       = aws_iam_role.eks_node_role.name
   policy_arn = "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly"
 }
+
+# Thêm quyền truy cập S3 cho EKS Cluster & Worker Node
+resource "aws_iam_policy" "s3_read_policy" {
+  name        = "EKS_S3_Read_Policy"
+  description = "Cho phép EKS đọc file từ S3"
+  policy      = jsonencode({
+    Version   = "2012-10-17"
+    Statement = [
+      {
+        Effect    = "Allow"
+        Action    = "s3:GetObject"
+        Resource  = "arn:aws:s3:::luan-mock-project/terraform.tfvars"
+      }
+    ]
+  })
+}
+
+# Gán chính sách S3 vào EKS Cluster Role
+resource "aws_iam_role_policy_attachment" "s3_cluster_policy" {
+  role       = aws_iam_role.eks_cluster_role.name
+  policy_arn = aws_iam_policy.s3_read_policy.arn
+}
+
+# Gán chính sách S3 vào EKS Node Role
+resource "aws_iam_role_policy_attachment" "s3_node_policy" {
+  role       = aws_iam_role.eks_node_role.name
+  policy_arn = aws_iam_policy.s3_read_policy.arn
+}

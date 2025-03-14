@@ -24,3 +24,6 @@
 #jenkins file
 Jenkinsfile
 Jenkinsfile-destroy
+
+#security
+.tfvars
