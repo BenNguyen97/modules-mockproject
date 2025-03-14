@@ -1,0 +1,42 @@
+name: Terraform Destroy
+
+on:
+  workflow_dispatch:
+    inputs:
+      action:
+        description: "Choose action"
+        required: true
+        default: "destroy"
+        type: choice
+        options:
+          - destroy
+
+jobs:
+  terraform-destroy:
+    name: Terraform Destroy
+    runs-on: mock-project #ubuntu-latest #GitHub hosted - Sharing between
+    if: github.event.inputs.action == 'destroy'
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+            aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+            aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY_ID }}
+            aws-region: ap-southeast-1
+
+      - name: Download terraform.tfvars from S3
+        run: |
+          aws s3 cp s3://luan-mock-project/terraform.tfvars terraform.tfvars
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v2
+
+      - name: Initialize Terraform
+        run: terraform init
+
+      - name: Terraform Destroy
+        run: terraform destroy -var-file=terraform.tfvars -auto-approve
