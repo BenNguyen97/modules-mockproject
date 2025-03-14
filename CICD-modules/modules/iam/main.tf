@@ -1,6 +1,6 @@
 # Tạo IAM role EKS Cluster
 resource "aws_iam_role" "eks_cluster_role" {
-  name = var.eks_cluster_role_name
+  name = "luan-eks-cluster-role"
   assume_role_policy = jsonencode({
     Version   = "2012-10-17"
     Statement = [
@@ -22,7 +22,7 @@ resource "aws_iam_role_policy_attachment" "eks_cluster_policy" {
 
 # Tạo IAM role worker nodes
 resource "aws_iam_role" "eks_node_role" {
-  name = var.eks_worker_node_role
+  name = "luan-eks-worker-node-role"
   assume_role_policy = jsonencode({
     Version   = "2012-10-17"
     Statement = [
